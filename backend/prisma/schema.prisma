@@ -13,18 +13,18 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Contest {
-  titleSlug String    @id
-  title     String
-  startTime Int
-  done      Boolean   @default(false)
-  problems  Problem[]
+model contest {
+  title_slug String    @id
+  title      String
+  start_time Int
+  done       Boolean   @default(false)
+  problems   problem[]
 }
 
-model Problem {
-  titleSlug        String  @id
-  title            String
-  credit           Int
-  contestTitleSlug String
-  contest          Contest @relation(fields: [contestTitleSlug], references: [titleSlug])
+model problem {
+  title_slug             String  @id
+  title                  String
+  credit                 Int
+  contest_title_slug     String
+  contest                contest @relation(fields: [contest_title_slug], references: [title_slug])
 }
