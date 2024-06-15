@@ -27,12 +27,6 @@ payload_template = {
                 titleSlug 
                 startTime 
                 originStartTime 
-                cardImg 
-                sponsors { 
-                    name 
-                    lightLogo 
-                    darkLogo 
-                } 
             } 
         } 
     } 

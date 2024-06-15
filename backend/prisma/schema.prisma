@@ -19,11 +19,14 @@ model contest {
   start_time Int
   done       Boolean   @default(false)
   problems   problem[]
+
+  @@index([start_time])
 }
 
 model problem {
   title_slug             String  @id
   title                  String
+  problem_num_in_contest Int
   credit                 Int
   contest_title_slug     String
   contest                contest @relation(fields: [contest_title_slug], references: [title_slug])
