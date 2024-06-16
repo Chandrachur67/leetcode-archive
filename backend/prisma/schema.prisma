@@ -30,4 +30,30 @@ model problem {
   credit                 Int
   contest_title_slug     String
   contest                contest @relation(fields: [contest_title_slug], references: [title_slug])
+  statuses user_problem_status[]
+}
+
+model user {
+  user_id String @id @default(uuid())
+  email String @unique
+  username String
+  statuses user_problem_status[]
+}
+
+enum problem_status {
+  SOLVED
+  REVISIT
+  COMPLETED
+}
+
+model user_problem_status {
+  id String @id @default(uuid())
+  user_id String 
+  problem_title_slug String
+  status problem_status
+  user user @relation(fields: [user_id], references: [user_id])
+  problem problem @relation(fields: [problem_title_slug], references: [title_slug])
+
+  @@unique([user_id, problem_title_slug])
+  @@index([user_id, problem_title_slug])
 }
